@@ -1,0 +1,29 @@
+{
+  "name": "tomato-clock",
+  "version": "1.0.0",
+  "description": "use angular.js tomato clock",
+  "main": "app/main.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lleobox/Tomato-clock.git"
+  },
+  "keywords": [
+    "tomato-clock",
+    "angular"
+  ],
+  "author": "lleohao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lleobox/Tomato-clock/issues"
+  },
+  "homepage": "https://github.com/lleobox/Tomato-clock#readme",
+  "devDependencies": {
+    "bower": "^1.7.7"
+  }
+}

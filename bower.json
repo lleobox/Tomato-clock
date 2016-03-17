@@ -1,0 +1,31 @@
+{
+  "name": "tomato-clock",
+  "description": "use angular.js tomato clock",
+  "main": "app/main.html",
+  "authors": [
+    "lleohao"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "tomato-clock",
+    "angular"
+  ],
+  "homepage": "https://github.com/lleobox/Tomato-clock",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0"
+  }
+}
