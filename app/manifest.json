@@ -4,16 +4,17 @@
   "version": "0.1",
   "manifest_version": 2,
   "icons": {
-    "128": "static/icon/tomato_128.png",
-    "16": "static/icon/tomato_16.png"
+    "128": "icon/tomato_128.png",
+    "16": "icon/tomato_16.png"
   },
   "app": {
     "background": {
       "scripts": [
-        "script/background.js"
+        "main.js"
       ]
     }
   },
-  "permissions": ["alarms"]
-  
+  "permissions": [
+    "notifications", "storage"
+  ]
 }

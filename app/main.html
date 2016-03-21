@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="tomato">
 <head>
     <meta charset="UTF-8">
-    <title>Tomato clock</title>
+    <title>番茄 时钟</title>
+    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/font.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/vender/angular/angular.min.js"></script>
+    <script src="script/vender/angular-route/angular-route.min.js"></script>
 </head>
 <body>
-    <h1>tomato clock</h1>
+<div id="title-bar">
+    <button class="btn-auto-start icon-sync" title="休息时间结束后自动开启下一个番茄"></button>
+    <button class="btn-start-clock icon-play" title="开始番茄"></button>
+</div>
+
+<div id="container" ng-view>
+    <div class="input-box">
+        <input type="text" placeholder="添加新土豆">
+    </div>
+    <div class="message-box">
+        <div class="message">
+            <p>dd</p>
+        </div>
+    </div>
+</div>
+
+<div id="fotter">
+    <button class="btn-list icon-list" title="土豆列表"></button>
+    <button class="btn-history icon-clock" title="番茄历史"></button>
+    <button class="btn-setting icon-cog" title="设置"></button>
+</div>
+<script src="script/app.js"></script>
+<script src="script/hellper.js"></script>
 </body>
 </html>
