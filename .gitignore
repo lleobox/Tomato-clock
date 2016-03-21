@@ -5,6 +5,8 @@ bower_components/
 tmp
 .DS_Store
 .idea
-app/static/lib/icomoon.zip
+app/lib/icomoon.zip
 app/test
 design.mp
+typings/
+app/script/vender
