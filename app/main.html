@@ -1,37 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="tomato">
+<html lang="en" data-ng-app="tomato" data-ng-csp="">
 <head>
     <meta charset="UTF-8">
     <title>番茄 时钟</title>
     <link rel="stylesheet" href="style/normalize.css">
     <link rel="stylesheet" href="style/font.css">
     <link rel="stylesheet" href="style/style.css">
-    <script src="script/vender/angular/angular.min.js"></script>
+    <script src="script/vender/angular/angular.js"></script>
     <script src="script/vender/angular-route/angular-route.min.js"></script>
 </head>
 <body>
-<div id="title-bar">
-    <button class="btn-auto-start icon-sync" title="休息时间结束后自动开启下一个番茄"></button>
-    <button class="btn-start-clock icon-play" title="开始番茄"></button>
+<div id="title-bar" ng-controller="startController">
+    <span class="left-area"><button class="icon-sync"></button></span>
+    <span class="center-area">22:22</span>
+    <span class="right-area"><button class="icon-play"></button></span>
 </div>
 
 <div id="container" ng-view>
-    <div class="input-box">
-        <input type="text" placeholder="添加新土豆">
-    </div>
-    <div class="message-box">
-        <div class="message">
-            <p>dd</p>
-        </div>
-    </div>
+
 </div>
 
-<div id="fotter">
-    <button class="btn-list icon-list" title="土豆列表"></button>
-    <button class="btn-history icon-clock" title="番茄历史"></button>
-    <button class="btn-setting icon-cog" title="设置"></button>
+<div id="footer">
+    <span class="left-area">
+        <a href="#/"><i class="icon-list"></i></a>
+        <a href="#/history"><i class="icon-clock"></i></a>
+    </span>
+    <span class="right-area"><a href="#/setting"><i class="icon-cog"></i></a></span>
 </div>
 <script src="script/app.js"></script>
+<script src="script/controller.js"></script>
 <script src="script/hellper.js"></script>
 </body>
 </html>

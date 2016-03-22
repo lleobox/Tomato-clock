@@ -1,14 +1,24 @@
+/* 全局样式 */
 body {
-    background-color: #fff
+    background-color: #fff;
+    font-family: "Microsoft JhengHei UI", serif;
 }
 
-[class^=btn-] {
-    background-color: #fff
+ul, dl, dd, dt {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-[class^=btn-], input {
-    outline: 0;
-    border: none
+button {
+    border: none;
+    outline: none;
+    background-color: #FFFFFF;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
 }
 
 input:active, input:focus {
@@ -17,26 +27,85 @@ input:active, input:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
 }
 
+.left-area {
+    text-align: left;
+    padding-left: 6px;
+}
+
+.right-area {
+    text-align: right;
+    padding-right: 6px;
+}
+
+.center-area {
+    text-align: center;
+}
+
+.line {
+    width: 100%;
+    border-bottom: 1px solid #cccccc;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999;
+}
+
+/* 标题栏样式 */
 #title-bar {
-    height: 41px;
+    height: 40px;
+    width: 100%;
     border-bottom: 1px solid #ccc;
-    -webkit-app-region: drag
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    -webkit-app-region: drag;
 }
 
-#title-bar button {
+#title-bar span {
+    line-height: 40px;
+    width: 33.3%;
+}
+
+#title-bar button[class^=icon] {
+    -webkit-app-region: no-drag;
+}
+
+#title-bar span {
     font-size: 20px;
-    line-height: 38px;
-    -webkit-app-region: no-drag
 }
 
-#title-bar .btn-auto-start {
-    position: absolute;
-    left: 6px
+/* 底部操作栏样式 */
+#footer {
+    width: 100%;
+    height: 30px;
+    border-top: 1px solid #ccc;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#title-bar .btn-start-clock {
-    position: absolute;
-    right: 6px
+#footer span {
+    width: 50%;
+    line-height: 30px;
+    font-size: 18px;
+}
+
+#footer .left-area a {
+    padding: 0 6px;
+}
+
+#footer .right-area {
+    margin-right: 2px;
 }
 
 #container {
@@ -45,6 +114,7 @@ input:active, input:focus {
 }
 
 #container .input-box, #container .message-box {
+    /* 自适应居中显示 */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -60,32 +130,44 @@ input:active, input:focus {
     border-radius: 2px;
 }
 
-#container .message-box .message {
+#container .message {
     margin: 9px;
-    padding: 0 10px;
     width: 96%;
     border: 1px solid #ccc;
     border-radius: 2px;
+    overflow: auto;
 }
 
-#fotter {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 30px;
-    border-top: 1px solid #ccc
+#container .item {
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    border-top: 1px solid #FFFFFF;
+    border-bottom: 1px solid #c0cccc;
+    padding: 2px 0 2px 2px;
 }
 
-#fotter button {
-    font-size: 18px;
-    line-height: 30px
+#container .item:hover {
+    background-color: #FFFFFF;
 }
 
-#fotter .btn-list {
-    margin-left: 6px
+#container dt {
+    width: 120px;
+    height: 25px;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    margin: 5px auto;
+    border-radius: 30px;
+    background-color: #e6e6e6;
 }
 
-#fotter .btn-setting {
-    position: absolute;
-    right: 1px
+#container .icon-chevron-down, #container .icon-chevron-right {
+    margin-left: -7px;
 }
+
+#container [class^=icon-] {
+    cursor: pointer;
+    margin: 2px 5px 0 2px;
+}
+
