@@ -10,9 +10,6 @@ var $ = function (str) {
     };
 
 function setHeight() {
-    document.querySelector('.message').style.height = (window.outerHeight - 132) + "px";
+    document.querySelector('#container').style.height = (window.outerHeight - 70) + "px";
 }
-
 window.onresize = setHeight;
-
-window.onload = setHeight;
