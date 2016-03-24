@@ -63,6 +63,7 @@ input:active, input:focus {
     height: 40px;
     width: 100%;
     border-bottom: 1px solid #ccc;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -71,16 +72,13 @@ input:active, input:focus {
 }
 
 #title-bar span {
-    line-height: 40px;
     width: 33.3%;
+    font-size: 20px;
+    line-height: 40px;
 }
 
 #title-bar button[class^=icon] {
     -webkit-app-region: no-drag;
-}
-
-#title-bar span {
-    font-size: 20px;
 }
 
 /* 底部操作栏样式 */
@@ -108,6 +106,7 @@ input:active, input:focus {
     margin-right: 2px;
 }
 
+/* 主体内容区样式 */
 #container {
     background-color: #f9f9f9;
     display: flex;
@@ -116,16 +115,16 @@ input:active, input:focus {
 }
 
 #container .input {
+    height: 28px;
     margin: 9px 9px 0 9px;
     padding: 0 10px;
-    height: 28px;
     border: 1px solid #ccc;
     border-radius: 2px;
 }
 
 #container .message {
-    margin: 9px;
     height: 100%;
+    margin: 9px;
     border: 1px solid #ccc;
     border-radius: 2px;
     overflow: auto;
@@ -133,26 +132,49 @@ input:active, input:focus {
 
 #container .item {
     height: 20px;
-    line-height: 20px;
+    padding: 2px 0 2px 2px;
     font-size: 16px;
+    line-height: 20px;
     border-top: 1px solid #FFFFFF;
     border-bottom: 1px solid #c0cccc;
-    padding: 2px 0 2px 2px;
 }
 
 #container .item:hover {
     background-color: #FFFFFF;
 }
 
-#container dt {
+#container .list dt {
     width: 120px;
     height: 25px;
+    margin: 5px auto;
     font-size: 14px;
     line-height: 25px;
     text-align: center;
-    margin: 5px auto;
     border-radius: 30px;
     background-color: #e6e6e6;
+}
+
+#container .history {
+    overflow: auto;
+}
+
+#container .history dt, #container .history dd {
+    padding: 10px 15px;
+}
+
+#container .history dd {
+    border-bottom: 1px solid #cccccc;
+}
+
+#container .day-info {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#container .count-info {
+    float: right;
+    line-height: 20px;
+    font-weight: bold;
 }
 
 #container .icon-chevron-down, #container .icon-chevron-right {

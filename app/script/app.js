@@ -1,7 +1,7 @@
 var app = angular.module("tomato", ["ngRoute"]);
 
 app.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/', {
+    $routeProvider.when('/list', {
             templateUrl: "views/list.html",
             controller: "listController"
         })
@@ -10,7 +10,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "historyController"
         })
         .otherwise({
-            redirectTo: "/"
+            redirectTo: "/history"
         })
 }]).config(function ($provide) {
     $provide.decorator('$window', function ($delegate) {

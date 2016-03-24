@@ -11,9 +11,9 @@
 </head>
 <body>
 <div id="title-bar" ng-controller="startController">
-    <span class="left-area"><button class="icon-sync"></button></span>
-    <span class="center-area">22:22</span>
-    <span class="right-area"><button class="icon-play"></button></span>
+    <span class="left-area"><button class="icon-sync" title="休息结束后自动开启下一番茄"></button></span>
+    <span class="center-area show-time">{{ time.now | date: "HH:mm:ss" }}</span>
+    <span class="right-area"><button class="icon-play" title="开启一个番茄"></button></span>
 </div>
 
 <div id="container" ng-view>
@@ -22,10 +22,10 @@
 
 <div id="footer">
     <span class="left-area">
-        <a href="#/"><i class="icon-list"></i></a>
-        <a href="#/history"><i class="icon-clock"></i></a>
+        <a href="#/list" title="土豆列表"><i class="icon-list"></i></a>
+        <a href="#/history" title="番茄历史"><i class="icon-clock"></i></a>
     </span>
-    <span class="right-area"><a href="#/setting"><i class="icon-cog"></i></a></span>
+    <span class="right-area"><a href="#/setting" title="设置"><i class="icon-cog"></i></a></span>
 </div>
 <script src="script/app.js"></script>
 <script src="script/service.js"></script>
