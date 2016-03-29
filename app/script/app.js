@@ -9,6 +9,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: "views/history.html",
             controller: "historyController"
         })
+        .when('/setting', {
+            templateUrl: "views/setting.html",
+            controller: "settingController"
+        })
         .otherwise({
             redirectTo: "/list"
         })

@@ -197,4 +197,62 @@ input:active, input:focus {
     display: inline;
 }
 
+#container .setting-area {
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+}
+
+#container .setting-area table {
+    width: 80%;
+    margin: 50px auto;
+}
+
+#container .setting-area td {
+    padding: 10px 0;
+    vertical-align: middle;
+}
+
+/* 清除 range 默认样式 */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    box-shadow: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    border-radius: 2px;
+    height: 15px;
+    width: 10px;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -6px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    background: #cccccc;
+    border-radius: 1.3px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #cccccc;
+}
+
+
+
 

@@ -35,7 +35,8 @@ Store = function (dbName, callback) {
             storage = {};
             storage[dbName] = {
                 todo: [],       // 土豆列表
-                history: []     // 番茄历史列表
+                history: [],    // 番茄历史列表
+                setting: []
             };
             chrome.storage.local.set(storage, function () {
                 callback.call(this, storage[dbName]);
@@ -255,7 +256,7 @@ extend(TodoModel, Model);
  * @extend Model
  */
 var SettingModel = function () {
-    this.storage = new Storage(DBNAME);
+    this.storage = new Store(DBNAME);
     this.table = "setting";
 };
 extend(SettingModel, Model);
@@ -278,4 +279,3 @@ TodoModel.prototype.create = function (title, callback) {
 HistoryModel.prototype.create = function () {
 
 };
-

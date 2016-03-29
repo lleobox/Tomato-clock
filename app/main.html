@@ -14,7 +14,7 @@
 <div id="title-bar" ng-controller="startController">
     <span class="left-area"><button class="icon-sync" title="休息结束后自动开启下一番茄"></button></span>
     <span class="center-area show-time">{{ time.now | date: "HH:mm:ss" }}</span>
-    <span class="right-area"><button class="icon-play" title="开启一个番茄"></button></span>
+    <span class="right-area"><button class="icon-play" title="开启一个番茄" ng-click="startTomato()"></button></span>
 </div>
 
 <div id="container" ng-view>
