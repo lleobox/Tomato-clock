@@ -1,8 +1,11 @@
 /**
  * Created by lleohao on 2016/3/24.
  */
+var DBNAME = "tomato";
+
 function extend(Child, Parent) {
-    var F = function(){};
+    var F = function () {
+    };
     F.prototype = Parent.prototype;
     Child.prototype = new F();
     Child.prototype.constructor = Child;
@@ -201,7 +204,7 @@ Model.prototype.read = function (query, callback) {
  * @param data object 需要更新的内容
  * @param callback function 回调函数，返回修改后的内容
  */
-Model.prototype.update = function (id, data, callback) {
+Model.prototype.updata = function (id, data, callback) {
     this.storage.save(this.table, id, data, callback);
 };
 
@@ -227,8 +230,8 @@ Model.prototype.removeAll = function () {
  * @constructor HistoryModel
  * @extend Model
  */
-var HistoryModel = function (dbName) {
-    this.storage = new Store(dbName);
+var HistoryModel = function () {
+    this.storage = new Store(DBNAME);
     this.table = 'history';
 };
 extend(HistoryModel, Model);
@@ -239,17 +242,40 @@ extend(HistoryModel, Model);
  * @constructor TodoModel
  * @extend Model
  */
-var TodoModel = function (dbName) {
-    this.storage = new Store(dbName);
+var TodoModel = function () {
+    this.storage = new Store(DBNAME);
     this.table = 'todo';
 };
 extend(TodoModel, Model);
 
+/**
+ * 系统设置保存
+ * @param dbName string 指定数据库
+ * @constructor SettingModel
+ * @extend Model
+ */
+var SettingModel = function () {
+    this.storage = new Storage(DBNAME);
+    this.table = "setting";
+};
+extend(SettingModel, Model);
+
+
+TodoModel.prototype.create = function (title, callback) {
+    title = title || "";
+    callback = callback || function () {
+
+        };
+
+    var newItem = {
+        title: title,
+        completed: 0
+    };
+
+    this.storage.save(this.table, newItem, callback);
+};
 
 HistoryModel.prototype.create = function () {
 
 };
 
-TodoModel.prototype.create = function () {
-
-};

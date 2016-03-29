@@ -8,7 +8,7 @@ app.factory("uiService", function () {
 }).factory("timeService", function () {
     // 用于处理管理时间的服务
     return {}
-});
+}).service("TodoService", TodoModel);
 
 
 

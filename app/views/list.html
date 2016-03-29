@@ -1,11 +1,19 @@
-<input type="text" placeholder="添加新土豆" class="input">
+<input type="text" placeholder="添加新土豆" class="input" ng-model="title" ng-keypress="addItem($event)">
 <div class="message list">
-    <!--<ul>-->
-        <!--<li class="item" id=""><i class="icon-unchecked"></i>未完成</li>-->
-    <!--</ul>-->
-    <!--<dl>-->
-        <!--<dt><i class="icon-chevron-right"></i>已完成土豆</dt>-->
-        <!--<div class="line"></div>-->
-        <!--<dd class="item"><i class="icon-checked"></i>已完成</dd>-->
-    <!--</dl>-->
+    <ul ng-if="todoList.undo.length" ng-repeat="item in todoList.undo">
+        <li class="item" id="{{item.id}}">
+            <i class="icon-unchecked" ng-click="completeItem($event)"></i>
+            {{item.title}}
+            <i class="icon-delete delete-btn" ng-click="deleteItem($event)"></i>
+        </li>
+    </ul>
+    <dl ng-if="todoList.does.length">
+        <dt><i class="icon-chevron-right"></i>已完成土豆</dt>
+        <div class="line"></div>
+        <dd class="item" id="{{item.id}}" ng-repeat="item in todoList.does">
+            <i class="icon-checked"></i>
+            {{item.title}}
+            <i class="icon-delete delete-btn" ng-click="deleteItem($event)"></i>
+        </dd>
+    </dl>
 </div>

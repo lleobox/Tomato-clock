@@ -10,7 +10,7 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "historyController"
         })
         .otherwise({
-            redirectTo: "/history"
+            redirectTo: "/list"
         })
 }]).config(function ($provide) {
     $provide.decorator('$window', function ($delegate) {
