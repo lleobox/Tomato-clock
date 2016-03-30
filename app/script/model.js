@@ -205,7 +205,7 @@ Model.prototype.read = function (query, callback) {
  * @param data object 需要更新的内容
  * @param callback function 回调函数，返回修改后的内容
  */
-Model.prototype.updata = function (id, data, callback) {
+Model.prototype.update = function (id, data, callback) {
     this.storage.save(this.table, id, data, callback);
 };
 
@@ -261,7 +261,11 @@ var SettingModel = function () {
 };
 extend(SettingModel, Model);
 
-
+/**
+ * 创建代办是列表
+ * @param title string 标题
+ * @param callback function 回调函数
+ */
 TodoModel.prototype.create = function (title, callback) {
     title = title || "";
     callback = callback || function () {

@@ -25,8 +25,17 @@ app.config(['$routeProvider', function ($routeProvider) {
         });
         return $delegate;
     });
-}).run(function () {
+}).run(function ($rootScope, SettingService) {
     window.onresize = function () {
         document.querySelector('#container').style.height = (window.outerHeight - 70) + "px";
     };
+
+    // 保存全局配置信息
+    $rootScope.settingInfo = {};
+    SettingService.read(function (result) {
+        for (i in result[0]) {
+            $rootScope.settingInfo[i] = result[0][i];
+        }
+    });
+
 });

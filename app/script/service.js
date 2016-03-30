@@ -7,21 +7,14 @@ app
             }
         }
     })
-    .factory("timeService", function (SettingService) {
-        var settingInfo = {};
-        SettingService.read(function (result) {
-            settingInfo = result;
-        });
+    .factory("timeService", function ($rootScope, SettingService) {
         return {
-            timeFomat: function (second) {
+            timeFormat: function (second) {
                 var m = Math.floor(second / 60), s = second % 60;
                 m = m < 10 ? "0" + m : "" + m;
                 s = s < 10 ? "0" + s : "" + s;
 
                 return m + ":" + s;
-            },
-            startTomato: function () {
-
             }
         }
     })
