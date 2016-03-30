@@ -1,13 +1,56 @@
-app.controller('startController', function ($scope, timeService) {
+app.controller('startController', function ($rootScope, $scope, timeService, SettingService) {
         $scope.time = {
-            now: new Date()
+            value: "00:00"
         };
-        var updateClock = function () {
-            $scope.time.now = new Date()
+
+        var setTime = function (type) {
+            SettingService.read(function (result) {
+                $scope.time.value = result[0][type] + ":00";
+                $scope.$apply();
+            });
         };
-        var timer = setInterval(function () {
-            $scope.$apply(updateClock);
-        }, 1000);
+        setTime($rootScope.status.type);
+
+        // intervalCount， longRestTime， shortRestTime， workTime
+        var end = function () {
+            $rootScope.status.underway = !$rootScope.status.underway;
+
+            if ($rootScope.status.type === "workTime") {// 工作时间转过来的， 次数加一
+                $rootScope.status.count += 1;
+
+                if ($rootScope.status.count != $rootScope.settingInfo.intervalCount) { // 未到长休息时间
+                    $rootScope.status.type = "shortRestTime"; // 转入短休息
+                } else {
+                    $rootScope.status.type = "longRestTime";  // 转入长休息
+                }
+            } else {
+                $rootScope.status.type = "workTime";
+            }
+            setTime($rootScope.status.type);
+        };
+
+        $scope.start = function (type) {
+            $rootScope.status.underway = !$rootScope.status.underway;
+
+            var _fn = timeService.start(type);
+
+            $scope.timer = setInterval(function () {
+                var count = _fn();
+                if (count == -1) {
+                    clearInterval($scope.timer);
+                    end();
+                } else {
+                    $scope.time.value = timeService.timeFormat(count);
+                    $scope.$apply();
+                }
+            }, 200);
+        };
+
+        $scope.stop = function (type) {
+            $rootScope.status.underway = !$rootScope.status.underway;
+            clearInterval($scope.timer);
+        };
+
     })
     .controller('listController', function ($scope, uiService, TodoService) {
         // 保持高度自适应
