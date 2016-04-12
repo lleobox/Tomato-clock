@@ -43,12 +43,13 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
                     $scope.time.value = timeService.timeFormat(count);
                     $scope.$apply();
                 }
-            }, 200);
+            }, 1000);
         };
 
         $scope.stop = function (type) {
             $rootScope.status.underway = !$rootScope.status.underway;
             clearInterval($scope.timer);
+            setTime($rootScope.status.type);
         };
 
     })
@@ -118,23 +119,3 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
             });
         }
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

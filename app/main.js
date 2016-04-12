@@ -11,10 +11,10 @@ chrome.runtime.onInstalled.addListener(function () {
         history: [],    // 番茄历史列表
         setting: [{
             id: "key",
-            workTime: "2",
-            shortRestTime: "1",
-            longRestTime: "3",
-            intervalCount: "2"
+            workTime: "25",
+            shortRestTime: "5",
+            longRestTime: "20",
+            intervalCount: "4"
         }]
     };
     chrome.storage.local.set(storage, function () {
