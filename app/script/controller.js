@@ -43,7 +43,7 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
                 $scope.time.value = timeService.timeFormat(count);
                 $scope.$apply();
             }
-        }, 100);
+        }, 1000);
     };
 
     /**
