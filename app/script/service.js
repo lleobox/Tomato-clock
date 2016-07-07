@@ -75,6 +75,15 @@ app
             }
         }
 
+    })
+    .service("StatusService", function ($rootScope) {
+        return {
+            resetCount: function () {
+                $rootScope.status.workCount = 0;
+                $rootScope.status.shortRestCount = 0;
+                $rootScope.status.longRestCount = 0;
+            }
+        }
     });
 
 
