@@ -3,25 +3,25 @@
         <tr>
             <td>番茄时长</td>
             <td><input type="range" min="20" max="40" value="{{settingInfo.workTime}}" ng-model="settingInfo.workTime"
-                       ng-change="changeValue()"></td>
+                       ng-change="changeValue('workTime')"></td>
             <td>&nbsp;{{settingInfo.workTime}}</td>
         </tr>
         <tr>
             <td>休息时间长度</td>
             <td><input type="range" min="5" max="10" value="{{settingInfo.shortRestTime}}"
-                       ng-model="settingInfo.shortRestTime" ng-change="changeValue()"></td>
+                       ng-model="settingInfo.shortRestTime" ng-change="changeValue('shortRestTime')"></td>
             <td>&nbsp;{{settingInfo.shortRestTime}}</td>
         </tr>
         <tr>
             <td>长休息时间长度</td>
             <td><input type="range" min="15" max="30" value="{{settingInfo.longRestTime}}"
-                       ng-model="settingInfo.longRestTime" ng-change="changeValue()"></td>
+                       ng-model="settingInfo.longRestTime" ng-change="changeValue('longRestTime')"></td>
             <td>&nbsp;{{settingInfo.longRestTime}}</td>
         </tr>
         <tr>
             <td>长休息间隔</td>
-            <td><input type="range" min="1" max="10" value="{{settingInfo.intervalCount}}"
-                       ng-model="settingInfo.intervalCount" ng-change="changeValue()"></td>
+            <td><input type="range" min="1" max="10" value="{{settingInfo.longRestTime}}"
+                       ng-model="settingInfo.intervalCount" ng-change="changeValue('longRestTime')"></td>
             <td>&nbsp;{{settingInfo.intervalCount}}</td>
         </tr>
     </table>

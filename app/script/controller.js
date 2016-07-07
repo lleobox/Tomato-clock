@@ -83,6 +83,7 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
         // 保持高度自适应
         uiService.setHeight();
 
+        //@todo: 添加删除功能
         $scope.todoList = {
             undo: [],
             does: []
@@ -131,15 +132,15 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
     })
     .controller('historyController', function ($scope, uiService) {
         uiService.setHeight();
+
+        //@todo: 添加历史纪录功能
     })
     .controller('settingController', function ($rootScope, $scope, uiService, SettingService) {
         uiService.setHeight();
 
-        $scope.changeValue = function () {
+        $scope.changeValue = function (type) {
             var updateVal = {};
-            for (var i in $rootScope.settingInfo) {
-                updataVal[i] = $rootScope.settingInfo[i];
-            }
+            updateVal[type] = $rootScope.settingInfo[type];
 
             SettingService.update("key", updateVal, function () {
             });

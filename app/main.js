@@ -19,6 +19,8 @@ chrome.runtime.onInstalled.addListener(function () {
     };
     chrome.storage.local.set(storage, function () {
     });
+
+    console.log("installed");
 });
 
 
