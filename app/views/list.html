@@ -2,16 +2,18 @@
 <div class="message list">
     <ul ng-if="todoList.undo.length" ng-repeat="item in todoList.undo">
         <li class="item" id="{{item.id}}">
-            <i class="icon-unchecked" ng-click="completeItem($event)"></i>
+            <i class="icon-unchecked" ng-click="completeItem($event, 1)"></i>
             {{item.title}}
             <i class="icon-delete delete-btn" ng-click="deleteItem($event)"></i>
         </li>
     </ul>
     <dl ng-if="todoList.does.length">
-        <dt><i class="icon-chevron-right"></i>已完成土豆</dt>
-        <div class="line"></div>
-        <dd class="item" id="{{item.id}}" ng-repeat="item in todoList.does">
-            <i class="icon-checked"></i>
+        <dt ng-click="toggle()">
+            <i ng-class="{'icon-chevron-right': !status.isShow, 'icon-chevron-down': status.isShow}"></i>已完成土豆
+        </dt>
+        <div class="line" ng-show="status.isShow"></div>
+        <dd class="item" id="{{item.id}}" ng-repeat="item in todoList.does" ng-show="status.isShow">
+            <i class="icon-checked" ng-click="completeItem($event, 0)"></i>
             {{item.title}}
             <i class="icon-delete delete-btn" ng-click="deleteItem($event)"></i>
         </dd>

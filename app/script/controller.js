@@ -61,9 +61,9 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
 
         if (type === "workTime") {
             // 工作时间转过来的， 次数加一
-            $rootScope.status.count += 1;
+            $rootScope.status.workCount += 1;
 
-            if ($rootScope.status.count != $rootScope.settingInfo.intervalCount) { // 未到长休息时间
+            if ($rootScope.status.workCount != $rootScope.settingInfo.intervalCount) { // 未到长休息时间
                 $rootScope.status.type = "shortRestTime"; // 转入短休息
             } else {
                 $rootScope.status.type = "longRestTime";  // 转入长休息
@@ -71,7 +71,15 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
             // 显示休息通知
             NotificationsService.sendNotifications('work2rest');
         } else {
+            // 统计休息次数
+            if ($rootScope.status.type === 'shortRestTime') {
+                $rootScope.status.shortRestCount += 1;
+            } else {
+                $rootScope.status.longRestCount += 1;
+            }
+
             $rootScope.status.type = "workTime";
+
             // 显示工作通知
             NotificationsService.sendNotifications('rest2work');
         }
@@ -79,27 +87,30 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
     };
 
 })
-    .controller('listController', function ($scope, uiService, TodoService) {
+    .controller('listController', function ($rootScope, $scope, uiService, TodoService, StatusService) {
         // 保持高度自适应
         uiService.setHeight();
 
-        //@todo: 添加删除功能
         $scope.todoList = {
             undo: [],
             does: []
         };
 
+        $scope.status = {
+            isShow: true
+        }
+
         $scope.getTodoList = function () {
             TodoService.read(function (result) {
-                var undo = result.filter(function (val) {
-                        return !val.completed;
-                    }),
-                    does = result.filter(function (val) {
-                        return val.completed;
-                    });
+                var today = Date.now();
 
-                $scope.todoList.undo = undo;
-                $scope.todoList.does = does;
+                $scope.todoList.undo = result.filter(function (val) {
+                    return !val.completed;
+                });
+                $scope.todoList.does = result.filter(function (val) {
+                    // 只保存距现在24小时之前的内容
+                    return val.completed && ((today - val.id) / (24 * 60 * 60 * 1000) < 1);
+                });
                 $scope.$apply();
             });
         };
@@ -114,13 +125,30 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
             }
         };
 
-        $scope.completeItem = function ($event) {
+        $scope.completeItem = function ($event, type) {
             var target = $event.target,
-                id = target.parentNode.id;
+                id = target.parentNode.id,
+                update = null;
 
-            TodoService.updata(id, {
-                completed: 1
-            }, $scope.getTodoList);
+            // type === 1 => completed  0 => uncompleted
+            if (type === 1) {
+                update = {
+                    completed: type,
+                    workCount: $rootScope.status.workCount,
+                    shortRestCount: $rootScope.status.shortRestCount,
+                    longRestCount: $rootScope.status.longRestCount
+                };
+                StatusService.resetCount();
+            } else {
+                update = {
+                    completed: type,
+                    workCount: 0,
+                    shortRestCount: 0,
+                    longRestCount: 0
+                }
+            }
+
+            TodoService.update(id, update, $scope.getTodoList);
         };
 
         $scope.deleteItem = function ($event) {
@@ -129,10 +157,14 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
 
             TodoService.remove(id, $scope.getTodoList);
         }
+
+        $scope.toggle = function () {
+            $scope.status.isShow = !$scope.status.isShow;
+            console.log($scope.status.isShow);
+        }
     })
     .controller('historyController', function ($scope, uiService) {
         uiService.setHeight();
-
         //@todo: 添加历史纪录功能
     })
     .controller('settingController', function ($rootScope, $scope, uiService, SettingService) {

@@ -274,7 +274,10 @@ TodoModel.prototype.create = function (title, callback) {
 
     var newItem = {
         title: title,
-        completed: 0
+        completed: 0,
+        workCount: 0,
+        shortRestCount: 0,
+        longRestCount: 0
     };
 
     this.storage.save(this.table, newItem, callback);

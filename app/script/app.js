@@ -11,7 +11,9 @@ app
         $rootScope.status = {
             type: "workTime",
             underway: false,
-            count: 0
+            workCount: 0,
+            shortRestCount: 0,
+            longRestCount: 0
         };
         SettingService.read(function (result) {
             for (var i in result[0]) {
