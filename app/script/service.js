@@ -7,7 +7,7 @@ app
             }
         }
     })
-    .factory("timeService", function ($rootScope, SettingService) {
+    .factory("timeService", function ($rootScope) {
         return {
             // 格式化时间
             timeFormat: function (second) {
@@ -34,7 +34,48 @@ app
     })
     .service("TodoService", TodoModel)
     .service("SettingService", SettingModel)
-    .service("HistoryService", HistoryModel);
+    .service("HistoryService", HistoryModel)
+    .service("NotificationsService", function () {
+        var buttons = {
+                work2rest: [
+                    {'title': '休息'},
+                    {'title': '再工作一会'}
+                ],
+                rest2work: [
+                    {'title': '工作'},
+                    {'title': '再休息一会'}
+                ]
+            },
+            work2rest = {
+                type: 'basic',
+                iconUrl: '../icon/tomato_128.png',
+                title: '番茄时钟',
+                message: "工作完了，要休息吗？",
+                buttons: buttons.work2rest,
+                requireInteraction: true,
+                isClickable: false
+            },
+            rest2work = {
+                type: 'basic',
+                iconUrl: '../icon/tomato_128.png',
+                title: '番茄时钟',
+                message: "休息完了，要工作吗？",
+                buttons: buttons.rest2work,
+                requireInteraction: true,
+                isClickable: false
+            };
+
+        return {
+            sendNotifications: function (type) {
+                if (type === 'work2rest') {
+                    chrome.notifications.create('work2rest', work2rest);
+                } else {
+                    chrome.notifications.create('rest2work', rest2work);
+                }
+            }
+        }
+
+    });
 
 
 
