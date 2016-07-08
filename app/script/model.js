@@ -20,13 +20,11 @@ function extend(Child, Parent) {
  */
 var Store;
 Store = function (dbName, callback) {
-    var data,
-        dbName;
 
     callback = callback || function () {
         };
 
-    dbName = this.__dbName = dbName;
+    var dbName = this.__dbName = dbName;
 
     chrome.storage.local.get(dbName, function (storage) {
         if (dbName in storage) {
@@ -161,7 +159,7 @@ Store.prototype.drop = function (table) {
         var data = storage[this.__dbName];
         data[table] = [];
 
-        chrome.storage.local.set(storage, function (storage) {
+        chrome.storage.local.set(storage, function () {
             console.log('drop ' + table + 'ok');
         });
     });
@@ -226,20 +224,7 @@ Model.prototype.removeAll = function () {
 };
 
 /**
- * 历史纪录的操作类
- * @param dbName string 指定数据库
- * @constructor HistoryModel
- * @extend Model
- */
-var HistoryModel = function () {
-    this.storage = new Store(DBNAME);
-    this.table = 'history';
-};
-extend(HistoryModel, Model);
-
-/**
  * 待办列表的操作类
- * @param dbName string 指定数据库
  * @constructor TodoModel
  * @extend Model
  */
@@ -251,18 +236,18 @@ extend(TodoModel, Model);
 
 /**
  * 系统设置保存
- * @param dbName string 指定数据库
  * @constructor SettingModel
  * @extend Model
  */
-var SettingModel = function () {
+var SettingModel;
+SettingModel = function () {
     this.storage = new Store(DBNAME);
     this.table = "setting";
 };
 extend(SettingModel, Model);
 
 /**
- * 创建代办是列表
+ * 创建代办事列表
  * @param title string 标题
  * @param callback function 回调函数
  */
@@ -281,8 +266,4 @@ TodoModel.prototype.create = function (title, callback) {
     };
 
     this.storage.save(this.table, newItem, callback);
-};
-
-HistoryModel.prototype.create = function () {
-
 };

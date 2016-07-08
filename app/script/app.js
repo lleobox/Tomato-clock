@@ -48,3 +48,10 @@ app
             return $delegate;
         });
     });
+
+app.filter('dateFilter', function () {
+    return function (date) {
+        var _d = new Date(date);
+        return (_d.getMonth() + 1) + '月' + _d.getDate() + '日';
+    }
+});

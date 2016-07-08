@@ -25,16 +25,11 @@ app
                     count -= 1;
                     return count;
                 }
-            },
-            // 倒计时停止
-            stop: function () {
-
             }
         }
     })
     .service("TodoService", TodoModel)
     .service("SettingService", SettingModel)
-    .service("HistoryService", HistoryModel)
     .service("NotificationsService", function () {
         var buttons = {
                 work2rest: [
@@ -85,48 +80,3 @@ app
             }
         }
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

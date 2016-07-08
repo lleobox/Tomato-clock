@@ -98,7 +98,7 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
 
         $scope.status = {
             isShow: true
-        }
+        };
 
         $scope.getTodoList = function () {
             TodoService.read(function (result) {
@@ -156,16 +156,32 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
                 id = target.parentNode.id;
 
             TodoService.remove(id, $scope.getTodoList);
-        }
+        };
 
         $scope.toggle = function () {
             $scope.status.isShow = !$scope.status.isShow;
             console.log($scope.status.isShow);
         }
     })
-    .controller('historyController', function ($scope, uiService) {
+    .controller('historyController', function ($scope, uiService, TodoService) {
         uiService.setHeight();
-        //@todo: 添加历史纪录功能
+
+        $scope.history = [];
+
+        $scope.getHistory = function () {
+            TodoService.read(function (result) {
+                var today = Date.now();
+
+                $scope.history = result.filter(function (val) {
+                    // 只保存距现在24小时之前的内容
+                    return val.completed && ((today - val.id) / (24 * 60 * 60 * 1000) >= 1);
+                });
+                $scope.$apply();
+            });
+        };
+        $scope.getHistory();
+
+
     })
     .controller('settingController', function ($rootScope, $scope, uiService, SettingService) {
         uiService.setHeight();

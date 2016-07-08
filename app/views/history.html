@@ -1,8 +1,10 @@
 <dl class="history">
-    <!--<dt>-->
-        <!--<time class="day-info">3月23日</time><span class="count-info">完成了1个番茄</span>-->
-    <!--</dt>-->
-    <!--<dd>-->
-        <!--<time class="delay-info">16:52 - 17:17</time>&nbsp;编写页面-->
-    <!--</dd>-->
+    <dt ng-repeat-start="item in history">
+        <time class="day-info">{{item.id|dateFilter}}</time>
+        <span class="count-info">完成了{{item.workCount}}个番茄</span>
+    </dt>
+    <dd ng-repeat-end>
+        经过了{{item.workCount}}次工作,{{item.shortRestCount}}次短休息,{{item.longRestCount}}次长休息
+        完成了{{item.title}}.
+    </dd>
 </dl>
