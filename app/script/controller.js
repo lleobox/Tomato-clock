@@ -165,7 +165,6 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
     })
     .controller('historyController', function ($scope, uiService, TodoService) {
         uiService.setHeight();
-
         $scope.history = [];
 
         $scope.getHistory = function () {
@@ -180,8 +179,6 @@ app.controller('startController', function ($rootScope, $scope, timeService, Set
             });
         };
         $scope.getHistory();
-
-
     })
     .controller('settingController', function ($rootScope, $scope, uiService, SettingService) {
         uiService.setHeight();
